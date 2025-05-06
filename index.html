@@ -7,33 +7,20 @@
     <!-- SEO Meta Tags -->
     <title>PDF Pro Tools - Free Online PDF Editor & Converter</title>
     <meta name="description" content="Your one-stop solution for all PDF tasks. Merge, split, compress, convert (PDF to Word, Excel, JPG & more), edit, sign, and secure PDFs online for free.">
-    <meta name="keywords" content="pdf tools, online pdf editor, pdf converter, merge pdf, split pdf, compress pdf, pdf to word, word to pdf, edit pdf, sign pdf, free pdf tools">
+    <meta name="keywords" content="pdf tools, online pdf editor, pdf converter, merge pdf, split pdf, compress pdf, pdf to word, word to pdf, edit pdf, sign pdf, free pdf tools, image tools, document translator">
     <meta name="author" content="Your Company Name">
-    <link rel="canonical" href="https://www.yourwebsite.com/"> <!-- Replace with your actual domain -->
+    <link rel="canonical" href="https://www.yourwebsite.com/"> <!-- Replace -->
 
-    <!-- Open Graph / Facebook SEO Meta Tags (for social sharing) -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.yourwebsite.com/"> <!-- Replace -->
-    <meta property="og:title" content="PDF Pro Tools - Free Online PDF Editor & Converter">
-    <meta property="og:description" content="Merge, split, compress, convert, edit, and sign PDFs easily online.">
-    <meta property="og:image" content="https://www.yourwebsite.com/images/og-image.jpg"> <!-- Replace with an attractive share image URL -->
+    <!-- Font Awesome CDN (for icons in dropdown) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Twitter SEO Meta Tags -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.yourwebsite.com/"> <!-- Replace -->
-    <meta property="twitter:title" content="PDF Pro Tools - Free Online PDF Editor & Converter">
-    <meta property="twitter:description" content="The best free online tools to manage your PDF files.">
-    <meta property="twitter:image" content="https://www.yourwebsite.com/images/twitter-card-image.jpg"> <!-- Replace -->
+    <!-- Open Graph, Twitter, Favicon (ensure placeholders are updated) -->
+    <meta property="og:type" content="website"><meta property="og:url" content="https://www.yourwebsite.com/"><meta property="og:title" content="PDF Pro Tools - Free Online PDF Editor & Converter"><meta property="og:description" content="Merge, split, compress, convert, edit, and sign PDFs easily online."><meta property="og:image" content="https://www.yourwebsite.com/images/og-image.jpg">
+    <meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://www.yourwebsite.com/"><meta property="twitter:title" content="PDF Pro Tools - Free Online PDF Editor & Converter"><meta property="twitter:description" content="The best free online tools to manage your PDF files."><meta property="twitter:image" content="https://www.yourwebsite.com/images/twitter-card-image.jpg">
+    <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-    <!-- Favicon (replace with your actual favicon files) -->
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-
-    <!-- Google AdSense Script - REPLACE ca-pub-YOUR_ADSENSE_CLIENT_ID with your actual ID -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_CLIENT_ID"
-     crossorigin="anonymous"></script>
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_CLIENT_ID" crossorigin="anonymous"></script>
 
     <style>
         /* Basic Reset & Defaults */
@@ -47,118 +34,184 @@
         /* Header */
         header {
             background: #fff; padding: 0.8rem 0;
-            border-bottom: 1px solid #eee; margin-bottom: 1.5rem; /* Reduced margin */
+            border-bottom: 1px solid #eee; margin-bottom: 1.5rem;
+            position: relative; z-index: 1001; /* Ensure header is above dropdown */
         }
         .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
         .site-logo a { display: inline-block; text-decoration: none; }
-        .site-logo img {
-            height: 40px; /* Adjust as needed */
-            width: auto;
-            vertical-align: middle;
-        }
-        .header-nav { flex-grow: 1; }
-        .header-nav ul { list-style: none; display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-start; /* Align to start of flex container */ padding-left: 20px; }
-        .header-nav li { margin-right: 15px; }
-        .header-nav li:last-child { margin-right: 0; }
-        .header-nav a, .nav-button {
-            text-decoration: none; color: #555; padding: 0.5rem 0.8rem;
-            border-radius: 5px; font-weight: 500; transition: background-color 0.2s ease, color 0.2s ease;
-            display: inline-block;
-        }
-        .header-nav a:hover, .nav-button:hover { color: #e74c3c; background-color: #f9f9f9; }
-        .header-nav a.active { background-color: #e74c3c; color: #fff; font-weight: 600; }
-        .nav-button { background: none; border: 1px solid #ddd; cursor: pointer; font-family: inherit; font-size: 0.9rem; }
-        .nav-button:hover { border-color: #e74c3c; }
+        .site-logo img { height: 40px; width: auto; vertical-align: middle; }
+        .header-nav { flex-grow: 1; margin: 0 15px; /* Add some margin for spacing */ }
+        .header-nav ul { list-style: none; display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-start; padding-left: 0; /* Removed default padding */ }
+        .header-nav ul li { margin-right: 0; /* Padding on 'a' will handle spacing */ }
 
-        .auth-links { display: flex; align-items: center; margin-left: auto; } /* Keeps it to the right */
+        .header-nav ul li a,
+        .header-nav ul li .nav-button {
+            text-decoration: none; color: #555; padding: 0.5rem 1rem;
+            border-radius: 5px; font-weight: 500; transition: background-color 0.2s ease, color 0.2s ease;
+            display: block;
+        }
+        .header-nav ul li a:hover,
+        .header-nav ul li .nav-button:hover { color: #e74c3c; background-color: #f9f9f9; }
+        .header-nav ul li a.active { background-color: #e74c3c; color: #fff; font-weight: 600; }
+
+        .nav-button { background: none; border: 1px solid #ddd; cursor: pointer; font-family: inherit; font-size: 0.9rem; text-align: center; }
+        .nav-button:hover { border-color: #e74c3c; }
+        .auth-links { display: flex; align-items: center; margin-left: auto; }
         .auth-links a {
             text-decoration: none; color: #333; margin-left: 15px; padding: 0.5rem 0.8rem;
             border-radius: 5px; font-weight: 500; transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap;
         }
         .auth-links a:hover { color: #e74c3c; }
         .auth-links a.register-btn { background-color: #e74c3c; color: #fff; padding: 0.5rem 1rem; }
         .auth-links a.register-btn:hover { background-color: #c0392b; color: #fff; }
 
-        /* Advertisement Placeholder Styling */
-        .ad-placeholder {
-            background-color: #e9e9e9;
-            border: 1px dashed #ccc;
-            text-align: center;
-            padding: 10px;
-            margin: 1.5rem auto; /* Centered with margin */
-            font-size: 0.9em;
-            color: #777;
-            display: flex; /* For AdSense responsive ads */
-            justify-content: center;
+        /* Dropdown Menu Styles */
+        .header-nav .dropdown {
+            position: relative;
+        }
+        .header-nav .dropdown .dropdown-toggle::after {
+            content: ' ▼';
+            font-size: 0.7em;
+            margin-left: 5px;
+            display: inline-block;
+        }
+        .header-nav .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            min-width: 720px;
+            max-width: 90vw;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-radius: 0 0 8px 8px;
+            padding: 20px;
+            border-top: 3px solid #e74c3c;
+        }
+        .header-nav .dropdown:hover .dropdown-content,
+        .header-nav .dropdown .dropdown-toggle:focus + .dropdown-content, /* For keyboard nav */
+        .header-nav .dropdown .dropdown-content:hover /* Keep open when hovering dropdown itself */ {
+            display: block;
+        }
+        .dropdown-columns {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
+        .dropdown-column {
+            flex: 1;
+            min-width: 160px;
+            padding: 0 10px;
+        }
+        .dropdown-column:first-child { padding-left: 0; }
+        .dropdown-column:last-child { padding-right: 0; }
+
+        .dropdown-column h4 {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        .dropdown-column a {
+            display: flex;
             align-items: center;
-            min-height: 90px; /* Common ad height, adjust as needed */
-            width: 100%; /* Take full width of container */
-            max-width: 728px; /* Common banner ad width */
+            padding: 9px 5px;
+            text-decoration: none;
+            color: #555;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
-        .ad-placeholder-inline { /* For ads within tool grid potentially */
-            min-height: 250px; /* Common rectangle ad height */
-            max-width: 300px;
+        .dropdown-column a i.fas {
+            margin-right: 10px;
+            color: #e74c3c;
+            width: 1.3em;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        .dropdown-column a:hover {
+            background-color: #f5f5f5;
+            color: #e74c3c;
+        }
+        .dropdown-column a:hover i.fas {
+            color: #c0392b;
         }
 
-        /* Hero Section */
+        /* Ad Placeholder, Hero, Tools Grid, Footer (Same as before) */
+        .ad-placeholder { background-color: #e9e9e9; border: 1px dashed #ccc; text-align: center; padding: 10px; margin: 1.5rem auto; font-size: 0.9em; color: #777; display: flex; justify-content: center; align-items: center; min-height: 90px; width: 100%; max-width: 728px;}
         .hero { text-align: center; margin-bottom: 2rem; padding: 1rem 0; }
-        .hero h1 { /* Changed h2 to h1 for main page heading - SEO */
-            font-size: 2.5rem; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600;
-        }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600; }
         .hero p { font-size: 1.1rem; color: #555; max-width: 600px; margin: 0 auto; }
-
-        /* Tools Grid */
-        .tools-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-        .tool-card a {
-            display: block; background: #fff; border-radius: 8px; padding: 1.5rem;
-            text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease; text-decoration: none;
-            color: inherit; height: 100%; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; min-height: 180px;
-        }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .tool-card a { display: block; background: #fff; border-radius: 8px; padding: 1.5rem; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; text-decoration: none; color: inherit; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 180px; }
         .tool-card a:hover { transform: translateY(-5px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
         .tool-icon { font-size: 2.8rem; margin-bottom: 1rem; color: #e74c3c; line-height: 1; }
-        .tool-card h2 { /* Changed h3 to h2 for tool titles - better hierarchy if H1 is page title */
-            font-size: 1.1rem; margin-bottom: 0.5rem; color: #34495e; font-weight: 600;
-        }
+        .tool-card h2 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #34495e; font-weight: 600; }
         .tool-card p { font-size: 0.85rem; color: #666; line-height: 1.4; }
-
-        /* Footer */
-        footer {
-            text-align: center; margin-top: 3rem; padding: 1.5rem 0;
-            border-top: 1px solid #eee; color: #777; font-size: 0.9rem; background-color: #fff;
-        }
+        footer { text-align: center; margin-top: 3rem; padding: 1.5rem 0; border-top: 1px solid #eee; color: #777; font-size: 0.9rem; background-color: #fff; }
         footer ul { list-style: none; padding: 0; margin-bottom: 0.5rem; }
         footer ul li { display: inline; margin: 0 10px; }
         footer ul li a { color: #555; text-decoration: none; }
         footer ul li a:hover { text-decoration: underline; color: #e74c3c; }
 
 
-        /* Responsive Adjustments */
-        @media (max-width: 992px) {
-            .header-nav { order: 3; width: 100%; margin-top: 0.8rem; justify-content: center; padding-left: 0;}
-            .header-nav ul { justify-content: center; }
-            .auth-links { order: 2; margin-left: auto; }
-            .site-logo { order: 1; }
+        /* Responsive Adjustments for Header & Dropdown */
+        @media (max-width: 1024px) {
+            .header-nav { margin: 0 10px; } /* Reduce margin */
+            .header-nav .dropdown-content {
+                min-width: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                width: max-content;
+                max-width: 95vw;
+            }
+            .dropdown-columns {
+                flex-wrap: wrap;
+            }
+            .dropdown-column {
+                min-width: 180px;
+                margin-bottom: 15px;
+            }
         }
         @media (max-width: 768px) {
-            .header-content { flex-direction: column; align-items: center; } /* Center all header items when stacked */
+            .header-content { flex-direction: column; align-items: center; }
             .site-logo { margin-bottom: 0.8rem; order: 1; }
-            .header-nav { order: 2; width: 100%; margin-top: 0.5rem; }
-            .header-nav ul { flex-direction: column; align-items: center; }
-            .header-nav li { margin-right: 0; margin-bottom: 0.5rem; width: 100%; text-align: center; }
-            .header-nav a, .nav-button { display: block; width: auto; margin: 0 auto; max-width: 200px; }
+            .header-nav { order: 2; width: 100%; margin-top: 0.5rem; margin-left: 0; margin-right: 0; }
+            .header-nav ul { flex-direction: column; align-items: stretch; padding-left: 0; }
+            .header-nav ul li { margin-bottom: 0.2rem; }
+            .header-nav ul li a, .header-nav ul li .nav-button {
+                text-align: center;
+                padding: 0.8rem 1rem;
+            }
             .auth-links { order: 3; width: 100%; justify-content: center; margin-top: 1rem; margin-left: 0; }
             .auth-links a { margin: 0 10px; }
 
-            .hero h1 { font-size: 2rem; } .hero p { font-size: 1rem; }
-            .tools-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
-            .tool-card a { padding: 1rem; min-height: 150px; }
-            .tool-icon { font-size: 2.2rem; } .tool-card h2 { font-size: 1rem; }
-            .tool-card p { font-size: 0.8rem; }
+            /* Mobile Dropdown */
+            .header-nav .dropdown .dropdown-toggle::after { display: inline-block; }
+            .header-nav .dropdown-content {
+                position: static;
+                display: none;
+                width: 100%;
+                box-shadow: none;
+                border-top: 1px solid #eee;
+                border-radius: 0;
+                padding: 10px 0;
+                min-width: auto; max-width: 100%;
+                transform: none; left: auto;
+            }
+            .header-nav .dropdown.open .dropdown-content { /* Class toggled by JS for click */
+                display: block;
+            }
+            .dropdown-columns { flex-direction: column; }
+            .dropdown-column { min-width: 100%; padding: 0 10px; margin-bottom: 10px; }
+            .dropdown-column h4 { font-size: 0.9rem; margin-bottom: 8px;}
+            .dropdown-column a { padding: 8px 10px; }
         }
         @media (max-width: 480px) {
             .site-logo img { height: 35px; }
@@ -173,10 +226,10 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "PDF Pro Tools",
-      "url": "https://www.yourwebsite.com/", // Replace
+      "url": "https://www.yourwebsite.com/",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://www.yourwebsite.com/search?q={search_term_string}", // Replace with your site search URL if you have one
+        "target": "https://www.yourwebsite.com/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     }
@@ -189,49 +242,56 @@
             <div class="header-content">
                 <div class="site-logo">
                     <a href="/" aria-label="PDF Pro Tools Homepage">
-                        <!-- Placeholder SVG Logo - Replace with your actual logo -->
                         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCAxNTAgNDAiPjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iNDAiIGZpbGw9IiNlNzRjM2MiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIwIiBmaWxsPSJ3aGl0ZSI+UERGIFBybzwvdGV4dD48L3N2Zz4=" alt="PDF Pro Tools Logo">
-                        <!-- OR <img src="logo.png" alt="PDF Pro Tools Logo"> -->
                     </a>
                 </div>
 
                 <nav class="header-nav" aria-label="Main navigation">
                     <ul>
-                        <li><a href="#" class="active">All Tools</a></li>
-                        <div class="dropdown-content">
-            <div class="dropdown-columns">
-              <div class="dropdown-column">
-                <h4>Image Tools</h4>
-                <a href="/tools/alltools/img-compression.html"><i class="fas fa-compress-alt"></i> Image Compressor</a>
-                <a href="/tools/alltools/ImageResizer.html"><i class="fas fa-expand"></i> Image Resizer</a>
-                <a href="/tools/alltools/imgtopdf.html"><i class="fas fa-file-pdf"></i> Image to PDF</a>
-              </div>
-              
-              <div class="dropdown-column">
-                <h4>PDF Tools</h4>
-                <a href="/tools/alltools/pdf-merger.html"><i class="fas fa-object-group"></i> PDF Merger</a>
-                <a href="/tools/alltools/PDFSplitter.html"><i class="fas fa-cut"></i> PDF Splitter</a>
-                <a href="/tools/alltools/pdfremovepages.html"><i class="fas fa-minus-circle"></i> PDF Page Remove</a>
-                <a href="/tools/alltools/pdforaganise.html"><i class="fas fa-sort-amount-down"></i> PDF Organizer</a>
-              </div>
-              
-              <div class="dropdown-column">
-                <h4>Converters</h4>
-                <a href="/tools/alltools/pdftojpg.html"><i class="fas fa-file-image"></i> PDF to JPG</a>
-                <a href="/tools/alltools/pdftoword.html"><i class="fas fa-file-word"></i> PDF to Word</a>
-                <a href="/tools/alltools/pdftoexcel.html"><i class="fas fa-file-excel"></i> PDF to Excel</a>
-                <a href="/tools/alltools/WordtoPDF.html"><i class="fas fa-file-export"></i> Word to PDF</a>
-                <a href="/tools/alltools/ExceltoPDF.html"><i class="fas fa-file-export"></i> Excel to PDF</a>
-              </div>
-              
-              <div class="dropdown-column">
-                <h4>Other Tools</h4>
-                <a href="/tools/Translate.html"><i class="fas fa-language"></i> Document Translator</a>
-              </div>
+                        <!-- CORRECTED DROPDOWN PLACEMENT -->
+                        <li class="dropdown">
+                            <a href="#" class="active dropdown-toggle" role="button" id="allToolsDropdownNav" aria-haspopup="true" aria-expanded="false">All Tools</a>
+                            <div class="dropdown-content" aria-labelledby="allToolsDropdownNav">
+                                <div class="dropdown-columns">
+                                  <div class="dropdown-column">
+                                    <h4>Image Tools</h4>
+                                    <a href="/tools/alltools/img-compression.html"><i class="fas fa-compress-alt"></i> Image Compressor</a>
+                                    <a href="/tools/alltools/ImageResizer.html"><i class="fas fa-expand"></i> Image Resizer</a>
+                                    <a href="/tools/alltools/imgtopdf.html"><i class="fas fa-file-pdf"></i> Image to PDF</a>
+                                  </div>
+                                  <div class="dropdown-column">
+                                    <h4>PDF Tools</h4>
+                                    <a href="/tools/alltools/pdf-merger.html"><i class="fas fa-object-group"></i> PDF Merger</a>
+                                    <a href="/tools/alltools/PDFSplitter.html"><i class="fas fa-cut"></i> PDF Splitter</a>
+                                    <a href="/tools/alltools/pdfremovepages.html"><i class="fas fa-minus-circle"></i> PDF Page Remove</a>
+                                    <a href="/tools/alltools/pdforaganise.html"><i class="fas fa-sort-amount-down"></i> PDF Organizer</a>
+                                  </div>
+                                    <div class="dropdown-column">
+                                    <h4>Other Tools</h4>
+                                    <a href="/tools/Translate.html"><i class="fas fa-language"></i> Document Translator</a>
+                                  </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- END OF CORRECTED DROPDOWN -->
                         
                         <li><a href="#">Convert</a></li>
+                        <div class="dropdown-column">
+                                    <h4>Converters</h4>
+                                    <a href="/tools/alltools/pdftojpg.html"><i class="fas fa-file-image"></i> PDF to JPG</a>
+                                    <a href="/tools/alltools/pdftoword.html"><i class="fas fa-file-word"></i> PDF to Word</a>
+                                    <a href="/tools/alltools/pdftoexcel.html"><i class="fas fa-file-excel"></i> PDF to Excel</a>
+                                    <a href="/tools/alltools/WordtoPDF.html"><i class="fas fa-file-export"></i> Word to PDF</a>
+                                    <a href="/tools/alltools/ExceltoPDF.html"><i class="fas fa-file-export"></i> Excel to PDF</a>
+                                  </div>
                         <li><a href="#">Organize</a></li>
-                        <li><a href="#">Optimize</a></li>
+                                    <div class="dropdown-column">
+                                    <h4>PDF Tools</h4>
+                                    <a href="/tools/alltools/pdforaganise.html"><i class="fas fa-sort-amount-down"></i> PDF Organizer</a>
+                                  </div>
+                        
+                        <!-- Removed the "Options" button as "All Tools" serves as the primary dropdown now. You can re-add if it has a different purpose. -->
+                        <!-- <li><button id="show-options-btn" class="nav-button" aria-haspopup="true" aria-expanded="false">Options</button></li> -->
                     </ul>
                 </nav>
 
@@ -244,79 +304,37 @@
     </header>
 
     <main class="container">
-        <!-- Ad Placeholder - Below Header / Hero -->
         <div class="ad-placeholder">
-            <!-- Ad Unit 1: Responsive Banner -->
-            <!-- REPLACE ca-pub-YOUR_ADSENSE_CLIENT_ID and YOUR_AD_SLOT_ID_0001 -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-YOUR_ADSENSE_CLIENT_ID"
-                 data-ad-slot="YOUR_AD_SLOT_ID_0001"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_ADSENSE_CLIENT_ID" data-ad-slot="YOUR_AD_SLOT_ID_0001" data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
-            <span>Advertisement</span> <!-- Fallback text if ad doesn't load -->
+            <span>Advertisement</span>
         </div>
-
         <section class="hero" aria-labelledby="main-heading">
             <h1 id="main-heading">Every tool you need to work with PDFs</h1>
             <p>Merge, split, compress, convert, rotate, unlock and sign PDFs in just a few clicks. Simple, free, and online.</p>
         </section>
-
         <section class="tools-grid" aria-label="Available PDF Tools">
-            <!-- Tool Card: Merge PDF -->
             <article class="tool-card"> <a href="#" data-tool="Merge PDF"> <div class="tool-icon">🔗</div> <h2>Merge PDF</h2> <p>Combine multiple PDFs into one single document.</p> </a> </article>
-            <!-- Tool Card: Split PDF -->
             <article class="tool-card"> <a href="#" data-tool="Split PDF"> <div class="tool-icon">✂️</div> <h2>Split PDF</h2> <p>Extract specific pages or separate pages into individual PDFs.</p> </a> </article>
-            <!-- Tool Card: Compress PDF -->
             <article class="tool-card"> <a href="#" data-tool="Compress PDF"> <div class="tool-icon">↔️</div> <h2>Compress PDF</h2> <p>Reduce the file size of your PDF while maintaining quality.</p> </a> </article>
-
-            <!-- Potentially an ad spot within the grid for some layouts -->
-            <!-- <div class="ad-placeholder ad-placeholder-inline"> -->
-            <!--   <ins class="adsbygoogle" ...></ins> <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
-            <!--   <span>Advertisement</span> -->
-            <!-- </div> -->
-
-            <!-- Tool Card: PDF to Word -->
             <article class="tool-card"> <a href="#" data-tool="PDF to Word"> <div class="tool-icon">📄➡️📝</div> <h2>PDF to Word</h2> <p>Convert PDF files into editable Word documents.</p> </a> </article>
-            <!-- Tool Card: Word to PDF -->
             <article class="tool-card"> <a href="#" data-tool="Word to PDF"> <div class="tool-icon">📝➡️📄</div> <h2>Word to PDF</h2> <p>Convert Word documents into professional PDF files.</p> </a> </article>
-            <!-- Tool Card: PDF to Excel -->
             <article class="tool-card"> <a href="#" data-tool="PDF to Excel"> <div class="tool-icon">📄➡️📊</div> <h2>PDF to Excel</h2> <p>Extract data from PDFs directly into Excel spreadsheets.</p> </a> </article>
-            <!-- Tool Card: Excel to PDF -->
             <article class="tool-card"> <a href="#" data-tool="Excel to PDF"> <div class="tool-icon">📊➡️📄</div> <h2>Excel to PDF</h2> <p>Convert Excel spreadsheets into PDF documents.</p> </a> </article>
-            <!-- Tool Card: PDF to JPG -->
             <article class="tool-card"> <a href="#" data-tool="PDF to JPG"> <div class="tool-icon">📄➡️🖼️</div> <h2>PDF to JPG</h2> <p>Convert each PDF page into a JPG image file.</p> </a> </article>
-            <!-- Tool Card: JPG to PDF -->
             <article class="tool-card"> <a href="#" data-tool="JPG to PDF"> <div class="tool-icon">🖼️➡️📄</div> <h2>JPG to PDF</h2> <p>Convert JPG images into a single PDF document.</p> </a> </article>
-            <!-- Tool Card: Edit PDF -->
             <article class="tool-card"> <a href="#" data-tool="Edit PDF"> <div class="tool-icon">✏️</div> <h2>Edit PDF</h2> <p>Add text, shapes, images, and annotations to your PDF.</p> </a> </article>
-            <!-- Tool Card: Sign PDF -->
             <article class="tool-card"> <a href="#" data-tool="Sign PDF"> <div class="tool-icon">✍️</div> <h2>Sign PDF</h2> <p>Sign your PDF documents electronically online.</p> </a> </article>
-            <!-- Tool Card: Rotate PDF -->
             <article class="tool-card"> <a href="#" data-tool="Rotate PDF"> <div class="tool-icon">🔄</div> <h2>Rotate PDF</h2> <p>Rotate specific pages or the entire PDF document.</p> </a> </article>
-            <!-- Tool Card: Unlock PDF -->
             <article class="tool-card"> <a href="#" data-tool="Unlock PDF"> <div class="tool-icon">🔓</div> <h2>Unlock PDF</h2> <p>Remove password protection and restrictions from PDFs.</p> </a> </article>
-            <!-- Tool Card: Protect PDF -->
             <article class="tool-card"> <a href="#" data-tool="Protect PDF"> <div class="tool-icon">🔒</div> <h2>Protect PDF</h2> <p>Add a password to protect your PDF documents.</p> </a> </article>
-            <!-- Tool Card: Add Page Numbers -->
             <article class="tool-card"> <a href="#" data-tool="Add Page Numbers"> <div class="tool-icon">#️⃣</div> <h2>Add Page Numbers</h2> <p>Insert page numbers easily into your PDF documents.</p> </a> </article>
         </section>
-
-         <!-- Ad Placeholder - Before Footer -->
         <div class="ad-placeholder">
-            <!-- Ad Unit 2: Responsive Banner -->
-            <!-- REPLACE ca-pub-YOUR_ADSENSE_CLIENT_ID and YOUR_AD_SLOT_ID_0002 -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-YOUR_ADSENSE_CLIENT_ID"
-                 data-ad-slot="YOUR_AD_SLOT_ID_0002"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_ADSENSE_CLIENT_ID" data-ad-slot="YOUR_AD_SLOT_ID_0002" data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
             <span>Advertisement</span>
         </div>
-
     </main>
 
     <footer>
@@ -336,41 +354,71 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Set current year in footer
             document.getElementById('current-year').textContent = new Date().getFullYear();
 
-            // Tool card click handler
             const toolLinks = document.querySelectorAll('.tool-card a');
             toolLinks.forEach(link => {
                 link.addEventListener('click', (event) => {
                     event.preventDefault();
                     const toolName = link.dataset.tool || link.querySelector('h2').innerText;
                     console.log(`Tool clicked: ${toolName}`);
-                    alert(`You clicked on the '${toolName}' tool! (Functionality not implemented in this demo)`);
+                    alert(`You clicked on the '${toolName}' tool! (Functionality not implemented)`);
                 });
             });
 
-            // Header tab active state handler
-            const navLinks = document.querySelectorAll('.header-nav ul a');
+            // Header tab active state (excluding dropdown toggle)
+            const navLinks = document.querySelectorAll('.header-nav > ul > li > a:not(.dropdown-toggle)');
             navLinks.forEach(link => {
                 link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    // For demo, prevent default. In real app, this would navigate.
+                    // event.preventDefault(); 
+
+                    // Remove active from all direct nav links
+                    document.querySelectorAll('.header-nav > ul > li > a.active').forEach(activeLink => {
+                        activeLink.classList.remove('active');
+                    });
+                     // Remove active from dropdown toggle if another link is clicked
+                    const dropdownToggleEl = document.querySelector('.header-nav .dropdown-toggle');
+                    if (dropdownToggleEl) dropdownToggleEl.classList.remove('active');
+
                     this.classList.add('active');
                     console.log(`Tab clicked: ${this.innerText}`);
                 });
             });
 
-            // "Show Options" button handler
-            const optionsButton = document.getElementById('show-options-btn');
-            if (optionsButton) {
-                optionsButton.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    const isExpanded = optionsButton.getAttribute('aria-expanded') === 'true';
-                    optionsButton.setAttribute('aria-expanded', !isExpanded);
-                    console.log('Show Options button clicked!');
-                    alert('Options button clicked! (Dropdown menu not yet implemented)');
-                    // In a real app, toggle a dropdown menu here
+            // Dropdown toggle for mobile/click
+            const dropdownToggle = document.querySelector('.header-nav .dropdown .dropdown-toggle');
+            if (dropdownToggle) {
+                dropdownToggle.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                    }
+                    let parentDropdown = this.parentElement; // The li.dropdown
+                    let isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+                    // If opening dropdown, make it active, remove active from others
+                    if (!isExpanded) {
+                        document.querySelectorAll('.header-nav > ul > li > a.active').forEach(activeLink => {
+                            activeLink.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                    // else if closing, don't remove active if it's the only one.
+                    // If another tab is clicked, the other handler will remove active from dropdown.
+
+                    this.setAttribute('aria-expanded', !isExpanded);
+                    parentDropdown.classList.toggle('open');
+                });
+
+                // Close dropdown if clicking outside of it
+                document.addEventListener('click', function(event) {
+                    const allToolsDropdownContent = document.querySelector('.header-nav .dropdown-content');
+                    const isClickInsideDropdown = dropdownToggle.contains(event.target) || (allToolsDropdownContent && allToolsDropdownContent.contains(event.target));
+
+                    if (!isClickInsideDropdown && dropdownToggle.getAttribute('aria-expanded') === 'true') {
+                        dropdownToggle.setAttribute('aria-expanded', 'false');
+                        dropdownToggle.parentElement.classList.remove('open');
+                    }
                 });
             }
         });
