@@ -82,14 +82,24 @@
             top: 100%;
             left: 0;
             background-color: #fff;
-            min-width: 720px;
+            min-width: 200px; /* Default min-width for single column dropdowns */
             max-width: 90vw;
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
             z-index: 1000;
             border-radius: 0 0 8px 8px;
-            padding: 20px;
+            padding: 15px; /* Reduced padding for potentially smaller dropdowns */
             border-top: 3px solid #e74c3c;
         }
+        /* Adjust width for specific multi-column dropdowns */
+        .header-nav .dropdown .dropdown-content[aria-labelledby="allToolsDropdownNav"] {
+             min-width: 720px; /* For "All Tools" */
+             padding: 20px;
+        }
+         .header-nav .dropdown .dropdown-content[aria-labelledby="convertDropdownNav"] {
+             min-width: 400px; /* For "Convert" */
+        }
+        /* Add more specific widths if needed */
+
         .header-nav .dropdown:hover .dropdown-content,
         .header-nav .dropdown .dropdown-toggle:focus + .dropdown-content, /* For keyboard nav */
         .header-nav .dropdown .dropdown-content:hover /* Keep open when hovering dropdown itself */ {
@@ -162,24 +172,39 @@
 
 
         /* Responsive Adjustments for Header & Dropdown */
-        @media (max-width: 1024px) {
-            .header-nav { margin: 0 10px; } /* Reduce margin */
+        @media (max-width: 1024px) { /* Target tablet and below */
+            .header-nav { margin: 0 10px; }
             .header-nav .dropdown-content {
-                min-width: auto;
+                /* General responsive adjustments for dropdowns */
+                min-width: auto; /* Let content decide, or set a smaller fixed min-width */
+                width: max-content; /* Tries to fit the content */
+                max-width: calc(100vw - 40px); /* Don't overflow viewport */
                 left: 50%;
-                transform: translateX(-50%);
-                width: max-content;
-                max-width: 95vw;
+                transform: translateX(-50%); /* Center dropdown */
             }
+            /* Specific overrides if needed */
+            .header-nav .dropdown .dropdown-content[aria-labelledby="allToolsDropdownNav"] {
+                 min-width: auto; /* Override desktop min-width */
+                 width: 90vw; /* Example for All Tools to be wider */
+                 max-width: 600px; /* Max for All Tools if needed */
+            }
+             .header-nav .dropdown .dropdown-content[aria-labelledby="convertDropdownNav"],
+             .header-nav .dropdown .dropdown-content[aria-labelledby="organizeDropdownNav"] {
+                 min-width: auto;
+                 width: max-content;
+                 max-width: 300px; /* Example for smaller dropdowns */
+            }
+
             .dropdown-columns {
-                flex-wrap: wrap;
+                flex-wrap: wrap; /* Allow columns to wrap */
             }
             .dropdown-column {
-                min-width: 180px;
-                margin-bottom: 15px;
+                min-width: 180px; /* Ensure columns are readable when wrapped */
+                margin-bottom: 15px; /* Space between wrapped rows of columns */
             }
         }
-        @media (max-width: 768px) {
+
+        @media (max-width: 768px) { /* Mobile */
             .header-content { flex-direction: column; align-items: center; }
             .site-logo { margin-bottom: 0.8rem; order: 1; }
             .header-nav { order: 2; width: 100%; margin-top: 0.5rem; margin-left: 0; margin-right: 0; }
@@ -195,20 +220,20 @@
             /* Mobile Dropdown */
             .header-nav .dropdown .dropdown-toggle::after { display: inline-block; }
             .header-nav .dropdown-content {
-                position: static;
-                display: none;
+                position: static; /* No longer absolute, flows in document */
+                display: none;  /* Controlled by JS */
                 width: 100%;
                 box-shadow: none;
-                border-top: 1px solid #eee;
+                border-top: 1px solid #eee; /* Separator */
                 border-radius: 0;
-                padding: 10px 0;
+                padding: 10px 0; /* Adjust padding for stacked view */
                 min-width: auto; max-width: 100%;
-                transform: none; left: auto;
+                transform: none; left: auto; /* Reset desktop positioning */
             }
             .header-nav .dropdown.open .dropdown-content { /* Class toggled by JS for click */
                 display: block;
             }
-            .dropdown-columns { flex-direction: column; }
+            .dropdown-columns { flex-direction: column; } /* Stack columns vertically */
             .dropdown-column { min-width: 100%; padding: 0 10px; margin-bottom: 10px; }
             .dropdown-column h4 { font-size: 0.9rem; margin-bottom: 8px;}
             .dropdown-column a { padding: 8px 10px; }
@@ -248,7 +273,7 @@
 
                 <nav class="header-nav" aria-label="Main navigation">
                     <ul>
-                        <!-- CORRECTED DROPDOWN PLACEMENT -->
+                        <!-- All Tools Dropdown -->
                         <li class="dropdown">
                             <a href="#" class="active dropdown-toggle" role="button" id="allToolsDropdownNav" aria-haspopup="true" aria-expanded="false">All Tools</a>
                             <div class="dropdown-content" aria-labelledby="allToolsDropdownNav">
@@ -266,23 +291,7 @@
                                     <a href="/tools/alltools/pdfremovepages.html"><i class="fas fa-minus-circle"></i> PDF Page Remove</a>
                                     <a href="/tools/alltools/pdforaganise.html"><i class="fas fa-sort-amount-down"></i> PDF Organizer</a>
                                   </div>
-                                    <div class="dropdown-column">
-                                    <h4>Other Tools</h4>
-                                    <a href="/tools/Translate.html"><i class="fas fa-language"></i> Document Translator</a>
-                                  </div>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- END OF CORRECTED DROPDOWN -->
-                        
-                        <!-- CORRECTED DROPDOWN PLACEMENT -->                        
-                        <li class="dropdown">
-                            <a href="#" class="active dropdown-toggle" role="button" id="ConvertDropdownNav" aria-haspopup="true" aria-expanded="false">Convert</a>
-                            <div class="dropdown-content" aria-labelledby="ConvertDropdownNav">
-                                <div class="dropdown-columns">
-                                  <div class="dropdown-column">   
-                        <li><a href="#">Convert</a></li>
-                        <div class="dropdown-column">
+                                  <div class="dropdown-column">
                                     <h4>Converters</h4>
                                     <a href="/tools/alltools/pdftojpg.html"><i class="fas fa-file-image"></i> PDF to JPG</a>
                                     <a href="/tools/alltools/pdftoword.html"><i class="fas fa-file-word"></i> PDF to Word</a>
@@ -290,27 +299,57 @@
                                     <a href="/tools/alltools/WordtoPDF.html"><i class="fas fa-file-export"></i> Word to PDF</a>
                                     <a href="/tools/alltools/ExceltoPDF.html"><i class="fas fa-file-export"></i> Excel to PDF</a>
                                   </div>
-                        <!-- END OF CORRECTED DROPDOWN -->
-                            
-                        <!-- CORRECTED DROPDOWN PLACEMENT -->                        
+                                  <div class="dropdown-column">
+                                    <h4>Other Tools</h4>
+                                    <a href="/tools/Translate.html"><i class="fas fa-language"></i> Document Translator</a>
+                                  </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- END OF All Tools Dropdown -->
+                        
+                        <!-- Convert Dropdown -->                        
                         <li class="dropdown">
-                            <a href="#" class="active dropdown-toggle" role="button" id="OrganizeDropdownNav" aria-haspopup="true" aria-expanded="false">Organize</a>
-                            <div class="dropdown-content" aria-labelledby="OrganizeDropdownNav">
+                            <a href="#" class="dropdown-toggle" role="button" id="convertDropdownNav" aria-haspopup="true" aria-expanded="false">Convert</a>
+                            <div class="dropdown-content" aria-labelledby="convertDropdownNav">
+                                <div class="dropdown-columns">
+                                  <div class="dropdown-column">   
+                                    <h4>PDF to ...</h4>
+                                    <a href="/tools/alltools/pdftojpg.html"><i class="fas fa-file-image"></i> PDF to JPG</a>
+                                    <a href="/tools/alltools/pdftoword.html"><i class="fas fa-file-word"></i> PDF to Word</a>
+                                    <a href="/tools/alltools/pdftoexcel.html"><i class="fas fa-file-excel"></i> PDF to Excel</a>
+                                    <!-- Add more -->
+                                  </div>
+                                  <div class="dropdown-column">
+                                    <h4>... to PDF</h4>
+                                    <a href="/tools/alltools/WordtoPDF.html"><i class="fas fa-file-export"></i> Word to PDF</a>
+                                    <a href="/tools/alltools/ExceltoPDF.html"><i class="fas fa-file-export"></i> Excel to PDF</a>
+                                    <a href="/tools/alltools/imgtopdf.html"><i class="fas fa-file-pdf"></i> Image to PDF</a>
+                                     <!-- Add more -->
+                                  </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- END OF Convert Dropdown -->
+                            
+                        <!-- Organize Dropdown -->                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" role="button" id="organizeDropdownNav" aria-haspopup="true" aria-expanded="false">Organize</a>
+                            <div class="dropdown-content" aria-labelledby="organizeDropdownNav">
                                 <div class="dropdown-columns">
                                   <div class="dropdown-column">
-                                    <li><a href="#">Organize</a></li>
-                                    <div class="dropdown-column">
-                                    <h4>PDF Tools</h4>
-                                    <a href="/tools/alltools/pdforaganise.html"><i class="fas fa-sort-amount-down"></i> PDF Organizer</a>
+                                    <h4>Organize PDF</h4>
+                                    <a href="/tools/alltools/pdf-merger.html"><i class="fas fa-object-group"></i> Merge PDF</a>
+                                    <a href="/tools/alltools/PDFSplitter.html"><i class="fas fa-cut"></i> Split PDF</a>
+                                    <a href="/tools/alltools/pdfremovepages.html"><i class="fas fa-minus-circle"></i> Remove Pages</a>
+                                    <a href="/tools/alltools/pdforaganise.html"><i class="fas fa-sort-amount-down"></i> Organize PDF</a>
                                   </div>
-
-                          <!-- END OF CORRECTED DROPDOWN -->  
+                                </div>
+                            </div>
+                        </li>
+                        <!-- END OF Organize Dropdown -->  
                         
-                        <!-- Removed the "Options" button as "All Tools" serves as the primary dropdown now. You can re-add if it has a different purpose. -->
-                        <!-- <li><button id="show-options-btn" class="nav-button" aria-haspopup="true" aria-expanded="false">Options</button></li> -->
-                    </ul>
-                </nav>
-
+                        
                 <div class="auth-links">
                     <a href="#">Login</a>
                     <a href="#" class="register-btn">Register</a>
@@ -382,61 +421,84 @@
                 });
             });
 
-            // Header tab active state (excluding dropdown toggle)
-            const navLinks = document.querySelectorAll('.header-nav > ul > li > a:not(.dropdown-toggle)');
-            navLinks.forEach(link => {
+            // --- Enhanced Dropdown and Active State Logic ---
+            const allNavLinks = document.querySelectorAll('.header-nav > ul > li > a');
+            const dropdownToggles = document.querySelectorAll('.header-nav .dropdown .dropdown-toggle');
+
+            // Function to close all dropdowns
+            function closeAllDropdowns(exceptThisOne = null) {
+                document.querySelectorAll('.header-nav .dropdown.open').forEach(openDropdown => {
+                    if (openDropdown !== exceptThisOne) {
+                        openDropdown.classList.remove('open');
+                        const toggle = openDropdown.querySelector('.dropdown-toggle');
+                        if (toggle) {
+                            toggle.setAttribute('aria-expanded', 'false');
+                            // Don't remove 'active' here if it's the current page's main section
+                        }
+                    }
+                });
+            }
+
+            // Function to set active link
+            function setActiveLink(clickedLink) {
+                allNavLinks.forEach(link => link.classList.remove('active'));
+                clickedLink.classList.add('active');
+            }
+
+            // Event listener for regular nav links (not dropdown toggles)
+            document.querySelectorAll('.header-nav > ul > li > a:not(.dropdown-toggle)').forEach(link => {
                 link.addEventListener('click', function(event) {
-                    // For demo, prevent default. In real app, this would navigate.
-                    // event.preventDefault(); 
-
-                    // Remove active from all direct nav links
-                    document.querySelectorAll('.header-nav > ul > li > a.active').forEach(activeLink => {
-                        activeLink.classList.remove('active');
-                    });
-                     // Remove active from dropdown toggle if another link is clicked
-                    const dropdownToggleEl = document.querySelector('.header-nav .dropdown-toggle');
-                    if (dropdownToggleEl) dropdownToggleEl.classList.remove('active');
-
-                    this.classList.add('active');
-                    console.log(`Tab clicked: ${this.innerText}`);
+                    // If it's a real link, let it navigate: event.preventDefault();
+                    closeAllDropdowns();
+                    setActiveLink(this);
+                    console.log(`Regular link clicked: ${this.innerText}`);
                 });
             });
-
-            // Dropdown toggle for mobile/click
-            const dropdownToggle = document.querySelector('.header-nav .dropdown .dropdown-toggle');
-            if (dropdownToggle) {
-                dropdownToggle.addEventListener('click', function(e) {
+            
+            // Event listener for dropdown toggles
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
                     if (this.getAttribute('href') === '#') {
                         e.preventDefault();
                     }
                     let parentDropdown = this.parentElement; // The li.dropdown
-                    let isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    let isCurrentlyOpen = parentDropdown.classList.contains('open');
 
-                    // If opening dropdown, make it active, remove active from others
-                    if (!isExpanded) {
-                        document.querySelectorAll('.header-nav > ul > li > a.active').forEach(activeLink => {
-                            activeLink.classList.remove('active');
-                        });
-                        this.classList.add('active');
-                    }
-                    // else if closing, don't remove active if it's the only one.
-                    // If another tab is clicked, the other handler will remove active from dropdown.
-
-                    this.setAttribute('aria-expanded', !isExpanded);
+                    closeAllDropdowns(parentDropdown); // Close others before toggling current
+                    
                     parentDropdown.classList.toggle('open');
-                });
+                    this.setAttribute('aria-expanded', !isCurrentlyOpen);
 
-                // Close dropdown if clicking outside of it
-                document.addEventListener('click', function(event) {
-                    const allToolsDropdownContent = document.querySelector('.header-nav .dropdown-content');
-                    const isClickInsideDropdown = dropdownToggle.contains(event.target) || (allToolsDropdownContent && allToolsDropdownContent.contains(event.target));
-
-                    if (!isClickInsideDropdown && dropdownToggle.getAttribute('aria-expanded') === 'true') {
-                        dropdownToggle.setAttribute('aria-expanded', 'false');
-                        dropdownToggle.parentElement.classList.remove('open');
+                    // Set active state
+                    if (parentDropdown.classList.contains('open')) {
+                        setActiveLink(this);
+                    } else {
+                        // If closing a dropdown, the active state might revert or be handled
+                        // by a page load. For SPA-like behavior, you might want to check
+                        // if any other link should be active or remove active from this toggle.
+                        // For now, if it's closed, it might lose active unless it's the current page's section.
+                        // This part can be complex depending on exact desired UX.
+                        // If no other link is explicitly active, this one might remain active.
                     }
+                    console.log(`Dropdown toggled: ${this.innerText}`);
                 });
-            }
+            });
+
+            // Close dropdowns if clicking outside
+            document.addEventListener('click', function(event) {
+                const openDropdown = document.querySelector('.header-nav .dropdown.open');
+                if (openDropdown) {
+                    const isClickInside = openDropdown.contains(event.target);
+                    if (!isClickInside) {
+                        closeAllDropdowns();
+                        // Optionally, if a dropdown was active, decide if it should remain so
+                        // or if another default link should become active.
+                        // For example, if 'All Tools' was open and active, and you click outside,
+                        // it will close. If no other link becomes active, 'All Tools' might lose its 'active' class.
+                        // This depends on whether 'active' strictly means 'open dropdown' or 'current page section'.
+                    }
+                }
+            });
         });
     </script>
 
